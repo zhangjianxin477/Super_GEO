@@ -17,9 +17,10 @@ import { VisibilityBaseline } from './VisibilityBaseline'
 import { CompetitorIntelligence } from './CompetitorIntelligence'
 import { AssetsWorkspace } from './AssetsWorkspace'
 import { LandingPage } from './LandingPage'
+import { StaticDemoWorkspace } from './StaticDemoWorkspace'
 import { listBrandDiagnostics, type BrandDiagnosticProjectSummary, type GeoGapAction } from './api'
 
-type Screen = 'home' | 'diagnostics' | 'create' | 'report' | 'baseline' | 'queryResearch' | 'monitoring' | 'research' | 'assets' | 'content' | 'reports' | 'harness' | 'connections'
+type Screen = 'home' | 'demo' | 'diagnostics' | 'create' | 'report' | 'baseline' | 'queryResearch' | 'monitoring' | 'research' | 'assets' | 'content' | 'reports' | 'harness' | 'connections'
 type Query = { id: string; text: string; intent: string; source: string; rationale: string; priority: '高' | '中'; approved: boolean }
 
 const queriesSeed: Query[] = [
@@ -43,7 +44,7 @@ const coreWorkflow: ReadonlyArray<readonly [Screen, string, LucideIcon]> = [
 const ongoingWorkflow: ReadonlyArray<readonly [Screen, string, LucideIcon]> = [['monitoring', '持续监控', BellRing]]
 
 const validScreens = new Set<Screen>([
-  'home', 'diagnostics', 'create', 'report', 'baseline', 'queryResearch', 'monitoring',
+  'home', 'demo', 'diagnostics', 'report', 'baseline', 'queryResearch', 'monitoring',
   'research', 'assets', 'content', 'reports', 'harness', 'connections',
 ])
 
@@ -85,6 +86,8 @@ function persistActiveProjectId(projectId: string | null) {
   }
 }
 
+const isStaticDemoHost = () => typeof window !== 'undefined' && window.location.hostname.endsWith('github.io')
+
 export default function App() {
   const [screen, setScreen] = useState<Screen>(() => screenFromLocation())
   const [openNav, setOpenNav] = useState(false)
@@ -118,6 +121,7 @@ export default function App() {
   }
 
   useEffect(() => {
+    if (isStaticDemoHost()) return
     let cancelled = false
     void (async () => {
       try {
@@ -156,6 +160,11 @@ export default function App() {
     if (typeof window !== 'undefined') window.setTimeout(() => setToast(null), 2500)
   }
   const start = () => go('create')
+
+  if (isStaticDemoHost()) {
+    if (screen === 'home') return <LandingPage demoMode onEnterWorkspace={() => go('demo')} />
+    return <StaticDemoWorkspace onExit={() => go('home')} />
+  }
 
   if (screen === 'home') return <LandingPage onEnterWorkspace={() => go('diagnostics')} />
 

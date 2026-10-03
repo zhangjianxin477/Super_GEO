@@ -7,7 +7,7 @@ import {
   Menu, Network, RefreshCw, Search, ShieldCheck, Sparkles, Target, Users, X,
 } from 'lucide-react'
 
-type LandingPageProps = { onEnterWorkspace: () => void }
+type LandingPageProps = { onEnterWorkspace: () => void; demoMode?: boolean }
 type InfoMode = 'deck' | 'demo' | null
 
 const platforms = [
@@ -24,7 +24,7 @@ const faqs = [
   ['产品数据和项目数据会同步吗？', '项目是业务边界，产品档案是项目内的事实来源。Query、竞品、回答证据、内容草稿和发布记录都绑定到同一个项目，减少上下游数据漂移。'],
 ]
 
-export function LandingPage({ onEnterWorkspace }: LandingPageProps) {
+export function LandingPage({ onEnterWorkspace, demoMode = false }: LandingPageProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
   const [showInfo, setShowInfo] = useState<InfoMode>(null)
@@ -32,7 +32,11 @@ export function LandingPage({ onEnterWorkspace }: LandingPageProps) {
   const [loginError, setLoginError] = useState('')
   const [loginPending, setLoginPending] = useState(false)
   const [loginSuccess, setLoginSuccess] = useState(false)
-  const openLogin = () => { setMobileOpen(false); setLoginError(''); setLoginSuccess(false); setShowLogin(true) }
+  const openLogin = () => {
+    setMobileOpen(false)
+    if (demoMode) { onEnterWorkspace(); return }
+    setLoginError(''); setLoginSuccess(false); setShowLogin(true)
+  }
   const closeLogin = () => { if (!loginPending) { setShowLogin(false); setLoginError(''); setLoginSuccess(false) } }
   const fillDemoAccount = () => { setLoginError(''); const email = document.querySelector<HTMLInputElement>('.login-card input[name="email"]'); const password = document.querySelector<HTMLInputElement>('.login-card input[name="password"]'); if (email) email.value = 'demo@geo-compass.local'; if (password) password.value = 'demo1234' }
   const submitLogin = async (event: FormEvent<HTMLFormElement>) => {
@@ -95,7 +99,7 @@ export function LandingPage({ onEnterWorkspace }: LandingPageProps) {
     </main>
     <footer className="ab-footer"><div className="ab-logo"><span className="ab-logo-mark"><LineChart size={17}/></span><strong>GEO Compass</strong></div><span>© 2026 GEO Compass · Evidence-led visibility</span><div><button onClick={() => setShowInfo('deck')}>产品文档</button><a href="#product">产品能力</a><a href="#faq">常见问题</a><button onClick={openLogin}>登录工作台</button></div></footer>
 
-    {showInfo && <div className="info-overlay" role="dialog" aria-modal="true" aria-labelledby="info-title"><button className="login-backdrop" onClick={() => setShowInfo(null)} aria-label="关闭"/><div className="info-card"><button className="login-close" onClick={() => setShowInfo(null)} aria-label="关闭"><X size={18}/></button><span className="login-mark"><BookOpenCheck size={19}/></span><p className="landing-kicker">GEO Compass {showInfo === 'deck' ? 'product guide' : 'demo request'}</p><h2 id="info-title">{showInfo === 'deck' ? '产品介绍与使用说明' : '预约一次产品演示'}</h2><p>{showInfo === 'deck' ? '这里会展示 GEO Compass 的数据口径、真实平台采集、竞品研究、内容准备与人工发布边界。当前为官网原型入口。' : '留下团队信息，我们会按你的产品与 Query 场景演示从基线到复测的完整链路。当前为预约原型。'}</p>{showInfo === 'demo' && <label>联系邮箱<input type="email" placeholder="name@company.com"/></label>}<button className="landing-primary" onClick={() => { setShowInfo(null); showInfo === 'demo' ? openLogin() : scrollTo('product') }}>{showInfo === 'deck' ? '查看产品能力' : '继续进入工作台'} <ArrowRight size={15}/></button></div></div>}
+    {showInfo && <div className="info-overlay" role="dialog" aria-modal="true" aria-labelledby="info-title"><button className="login-backdrop" onClick={() => setShowInfo(null)} aria-label="关闭"/><div className="info-card"><button className="login-close" onClick={() => setShowInfo(null)} aria-label="关闭"><X size={18}/></button><span className="login-mark"><BookOpenCheck size={19}/></span><p className="landing-kicker">GEO Compass {showInfo === 'deck' ? 'product guide' : 'demo request'}</p><h2 id="info-title">{showInfo === 'deck' ? '产品介绍与使用说明' : '预约一次产品演示'}</h2><p>{showInfo === 'deck' ? '这里会展示 GEO Compass 的数据口径、真实平台采集、竞品研究、内容准备与人工发布边界。当前为官网原型入口。' : '留下团队信息，我们会按你的产品与 Query 场景演示从基线到复测的完整链路。当前为预约原型。'}</p>{showInfo === 'demo' && <label>联系邮箱<input type="email" placeholder="name@company.com"/></label>}<button className="landing-primary" onClick={() => { setShowInfo(null); showInfo === 'demo' ? openLogin() : scrollTo('product') }}>{showInfo === 'deck' ? '查看产品能力' : (demoMode ? '进入在线演示' : '继续进入工作台')} <ArrowRight size={15}/></button></div></div>}
     {showLogin && <div className="login-overlay" role="dialog" aria-modal="true" aria-labelledby="login-title"><button className="login-backdrop" onClick={closeLogin} aria-label="关闭登录"/><form className="login-card" onSubmit={submitLogin}><button type="button" className="login-close" onClick={closeLogin} aria-label="关闭"><X size={18}/></button><span className="login-mark"><LineChart size={19}/></span><p className="landing-kicker">GEO Compass workspace</p><h2 id="login-title">回到你的工作台</h2><p className="login-subtitle">继续查看项目、回答证据和复测结果。</p><label>工作邮箱<input type="text" inputMode="email" name="email" placeholder="name@company.com" autoFocus/></label><label>访问密码<input type="password" name="password" placeholder="请输入访问密码"/></label>{loginError && <div className="login-feedback error" role="alert">{loginError}</div>}{loginSuccess && <div className="login-feedback success" role="status">登录成功，正在进入工作台…</div>}<button className="landing-primary login-submit" type="submit" disabled={loginPending}>{loginPending ? <>正在创建演示工作区…</> : <>登录并继续 <ArrowRight size={15}/></>}</button><button type="button" className="login-demo-link" onClick={fillDemoAccount} disabled={loginPending}>使用演示账号快速进入</button><small>当前为本地演示登录：不会验证真实账号，但会创建可用的工作区会话。演示账号：demo@geo-compass.local / demo1234</small></form></div>}
   </div>
 }
