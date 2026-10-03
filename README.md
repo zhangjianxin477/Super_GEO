@@ -287,7 +287,7 @@ npm run verify
 
 仓库已配置 GitHub Actions：每次推送到 `main` 分支后，工作流会自动使用 Node.js 24 构建 `dist/`，并发布到 GitHub Pages。
 
-仓库地址：`https://github.com/zhangjianxin477/GEO-`
+仓库地址：`https://github.com/zhangjianxin477/Super_GEO`
 
 首次启用时，在 GitHub 仓库中打开：
 
@@ -298,10 +298,10 @@ Settings → Pages → Build and deployment → Source: GitHub Actions
 随后等待 `Deploy frontend to GitHub Pages` 工作流完成，访问地址通常为：
 
 ```text
-https://zhangjianxin477.github.io/GEO-/
+https://zhangjianxin477.github.io/Super_GEO/
 ```
 
-也可以在仓库的 `Settings → Pages` 页面直接复制 GitHub 显示的最终地址。Vite 已针对仓库子路径配置 `base: /GEO-/`，导航使用 hash 路由，因此刷新 `#reports`、`#monitoring` 等页面不会因为 GitHub Pages 没有后端路由而 404。
+也可以在仓库的 `Settings → Pages` 页面直接复制 GitHub 显示的最终地址。Vite 已针对仓库子路径配置 `base: /Super_GEO/`，导航使用 hash 路由，因此刷新 `#reports`、`#monitoring` 等页面不会因为 GitHub Pages 没有后端路由而 404。
 
 ### GitHub Pages 的能力边界
 
@@ -389,4 +389,5 @@ GitHub Pages 只托管静态前端，不运行 Node.js API、SQLite 数据库或
 ## License
 
 当前为个人作品 / 面试展示项目。正式开源前请补充许可证、第三方依赖声明和部署安全说明。
+
 

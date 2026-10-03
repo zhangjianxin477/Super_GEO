@@ -2,8 +2,8 @@ import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  // GitHub Pages serves this repository from /GEO-/. Local development keeps /.
-  base: ((globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env?.GITHUB_ACTIONS) ? '/GEO-/' : '/',
+  // GitHub Pages serves this repository from /Super_GEO/. Local development keeps /.
+  base: ((globalThis as { process?: { env?: Record<string, string | undefined> } }).process?.env?.GITHUB_ACTIONS) ? '/Super_GEO/' : '/',
   plugins: [react()],
   server: {
     proxy: { '/api': 'http://127.0.0.1:8787', '/health': 'http://127.0.0.1:8787' },
@@ -18,4 +18,5 @@ export default defineConfig({
     include: ['tests/**/*.test.{ts,tsx}'],
   },
 })
+
 
