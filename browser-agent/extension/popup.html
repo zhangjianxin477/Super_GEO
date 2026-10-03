@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEO Browser Agent</title><style>body{width:340px;margin:0;padding:16px;background:#f8fafc;color:#0f172a;font:13px/1.5 system-ui,-apple-system,"Microsoft YaHei",sans-serif}h1{margin:0;font-size:16px}p{margin:6px 0;color:#475569}.state{margin:14px 0;border:1px solid #cbd5e1;border-radius:10px;padding:10px;background:#fff}.state b{display:block}.hint{font-size:12px;color:#64748b}.actions{display:flex;gap:8px;margin-top:12px}button{border:1px solid #cbd5e1;border-radius:8px;padding:8px 10px;background:#fff;color:#0f172a;font-weight:700;cursor:pointer}button.primary{border-color:#075985;background:#075985;color:#fff}button:disabled{opacity:.55;cursor:not-allowed}.success{color:#047857}.error{color:#b42318}</style></head>
+<body>
+  <h1>GEO Browser Agent</h1>
+  <p>多平台网页基线采集 · 客户本地 · 显式启动</p>
+  <div class="state" id="state"><b>正在检查本地 Agent…</b></div>
+  <p class="hint">系统授权后会自动开始；此处“开始”仅用于本地排障兜底。遇到登录、验证码或页面结构变化会停止并转人工兜底。</p>
+  <div class="actions"><button class="primary" id="start">手动兜底启动</button><button id="pause">暂停</button><button id="refresh">刷新</button></div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
+

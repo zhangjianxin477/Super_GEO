@@ -1,0 +1,65 @@
+{
+  "manifest_version": 3,
+  "name": "GEO Browser Agent · 国内 AI 平台",
+  "version": "0.3.25",
+  "description": "客户侧、系统内明确授权后自动启动的国内 AI 网页 GEO 基线采集适配器。",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "scripting",
+    "alarms"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:23891/*",
+    "https://www.doubao.com/*",
+    "https://yuanbao.tencent.com/*",
+    "https://chat.deepseek.com/*",
+    "https://wenxin.baidu.com/*",
+    "https://yiyan.baidu.com/*",
+    "https://ernie.baidu.com/*",
+    "https://chatglm.cn/*",
+    "https://chat.z.ai/*",
+    "https://kimi.com/*",
+    "https://www.kimi.com/*",
+    "https://kimi.moonshot.cn/*",
+    "https://www.qianwen.com/*",
+    "https://qianwen.com/*",
+    "https://tongyi.aliyun.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "GEO Browser Agent",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.doubao.com/*",
+        "https://yuanbao.tencent.com/*",
+        "https://chat.deepseek.com/*",
+        "https://wenxin.baidu.com/*",
+        "https://yiyan.baidu.com/*",
+        "https://ernie.baidu.com/*",
+        "https://chatglm.cn/*",
+        "https://chat.z.ai/*",
+        "https://kimi.com/*",
+        "https://www.kimi.com/*",
+        "https://kimi.moonshot.cn/*",
+        "https://www.qianwen.com/*",
+        "https://qianwen.com/*",
+        "https://tongyi.aliyun.com/*"
+      ],
+      "js": [
+        "content/platform.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
+
+
+

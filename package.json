@@ -1,0 +1,44 @@
+{
+  "name": "geo-growth-harness",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Enterprise GEO Growth Harness — evidence-led AI visibility, content, and measurement workflows.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "api": "node server/index.mjs",
+    "migrate": "node server/migrate.mjs",
+    "test:server": "node scripts/run-server-tests.mjs",
+    "start": "node server/index.mjs",
+    "verify": "npm run test:server && npm test && npm run test:release && npm run build",
+    "test:release": "node scripts/release-preflight.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^0.542.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router-dom": "^7.18.4",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.26",
+    "jsdom": "^26.1.0",
+    "typescript": "5.9",
+    "typescript-eslint": "^8.70.1",
+    "vite": "^7.3.6",
+    "vitest": "^3.2.7"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  }
+}
+

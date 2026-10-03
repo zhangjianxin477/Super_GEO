@@ -1,0 +1,153 @@
+const cn = {
+  'category-discovery': [
+    '有哪些支持知识图谱、来源可追溯的 AI 知识库工具？',
+    '企业选择 AI 知识库时，哪些产品能把答案关联到原始来源？',
+    '适合 B2B 团队的知识图谱型 AI 知识库有哪些？',
+    '有哪些 AI 知识库工具可以展示回答的引用出处？',
+    '企业知识库产品中，哪些支持知识图谱上下文和可追溯问答？',
+    '面向跨境 SaaS 团队的 AI 知识库工具怎么选？',
+    '支持多来源知识管理和来源引用的 AI 知识库有哪些？',
+    '有哪些企业级 AI 知识库可降低回答幻觉并保留证据链？',
+    'AI 产品团队常用的可审计知识库工具有哪些？',
+    '需要知识图谱与引用溯源时，企业知识库选型应关注哪些工具？',
+  ],
+  scenario: [
+    'B2B SaaS 团队如何为销售、客服和产品共用一套可追溯的 AI 知识库？',
+    '企业内部问答需要返回来源链接时，应该使用哪类 AI 知识库？',
+    '跨语言知识库场景中，如何让 AI 回答保留原始资料来源？',
+    '产品文档频繁更新时，什么 AI 知识库适合做可审计的问答？',
+    '需要把客户案例、政策和产品文档关联起来时，知识图谱型 AI 知识库怎么选？',
+    '企业知识负责人怎样验证 AI 回答是否基于已批准的资料？',
+    '面向出海 SaaS 的帮助中心，怎样建立可追溯的 AI 答案能力？',
+    'AI 产品负责人如何管理知识源、版本和回答引用？',
+    '需要隔离不同客户资料的 B2B 团队应该选择什么知识库方案？',
+    '有合规审核要求的企业，如何让 AI 问答附带来源证据？',
+  ],
+  comparison: [
+    '支持知识图谱和来源引用的 AI 知识库，与 Notion AI 有什么区别？',
+    '面向企业问答，知识图谱型 AI 知识库与传统文档搜索如何比较？',
+    '需要可追溯答案时，AI 知识库和 RAG 聊天机器人有什么差异？',
+    '企业知识库选型中，来源引用、权限和知识图谱能力该怎样比较？',
+    '面向 B2B 团队，AI 知识库与通用笔记工具的优缺点是什么？',
+    '如何比较不同 AI 知识库的回答可解释性和证据链能力？',
+    '企业要做多语言帮助中心时，知识图谱型知识库与 FAQ 工具怎么选？',
+    'AI 知识库产品比较时，哪些指标能验证来源可追溯性？',
+    '私有知识库与公共搜索型 AI 工具在企业问答上如何取舍？',
+    '对需要审计的团队，怎样比较 AI 知识库的版本管理能力？',
+  ],
+  alternative: [
+    '除了 Notion AI，还有哪些支持来源引用的企业 AI 知识库？',
+    '有没有更适合 B2B 团队的知识图谱型知识库替代方案？',
+    '不想只用通用文档协作工具时，企业 AI 知识库有哪些替代选择？',
+    '有哪些可替代传统 FAQ 系统的可追溯 AI 知识库？',
+    '需要企业级权限与引用溯源时，Notion 的替代工具有哪些？',
+    '适合产品和客服团队共用的 AI 知识库替代方案有哪些？',
+    '哪些 AI 知识库可以替代手工维护的文档中心？',
+    '支持中文和英文知识问答的企业知识库工具有哪些？',
+    '面向出海 SaaS 的 AI 帮助中心有哪些可选方案？',
+    '想验证 AI 回答依据时，有哪些知识库产品可以考虑？',
+  ],
+  'brand-discovery': [
+    'CoreNote 是什么类型的 AI 知识库产品？',
+    'CoreNote 是否支持知识图谱上下文？',
+    'CoreNote 的 AI 回答能否关联资料来源？',
+    'CoreNote 适合哪些 B2B 团队使用？',
+    'CoreNote 能解决企业知识分散和答案不可追溯的问题吗？',
+    'CoreNote 与企业帮助中心有什么关系？',
+    'CoreNote 是否适合中英文内容管理？',
+    'CoreNote 是否提供可验证的知识来源引用？',
+    'CoreNote 是否适合作为 AI 产品团队的知识工作台？',
+    '企业为什么会评估 CoreNote 作为 AI 知识库候选？',
+  ],
+}
+
+const en = {
+  'category-discovery': [
+    'What AI knowledge base tools provide knowledge-graph context and source-cited answers for B2B teams?',
+    'Which enterprise AI knowledge bases link answers back to original sources?',
+    'What are the best AI knowledge base options for traceable, evidence-backed answers?',
+    'Which B2B knowledge platforms support source citations in AI answers?',
+    'What tools combine a knowledge graph with auditable AI question answering?',
+    'Which AI knowledge bases are suitable for cross-border SaaS teams?',
+    'What enterprise knowledge platforms support multi-source, cited AI answers?',
+    'Which AI knowledge base products help reduce unsupported answers with source evidence?',
+    'What knowledge tools do AI product leaders use for governed enterprise answers?',
+    'What should enterprises evaluate when they need both knowledge-graph context and cited answers?',
+  ],
+  scenario: [
+    'How can a B2B SaaS team give sales, support, and product teams one traceable AI knowledge base?',
+    'What kind of AI knowledge base is best when internal answers must include source links?',
+    'How should a multilingual help center preserve original-source attribution in AI responses?',
+    'Which knowledge base works when product documentation changes frequently and needs auditability?',
+    'How can a team connect case studies, policy documents, and product docs for AI answers?',
+    'How can a knowledge-base owner verify that AI answers use approved sources?',
+    'What is a practical approach to source-cited AI answers for a SaaS help center?',
+    'How should an AI product leader manage knowledge sources, versions, and answer citations?',
+    'What knowledge platform fits B2B teams that need tenant isolation for customer material?',
+    'How can regulated teams make AI answers evidence-backed and reviewable?',
+  ],
+  comparison: [
+    'How do AI knowledge bases with knowledge graphs and citations compare with Notion AI?',
+    'How does a knowledge-graph AI knowledge base compare with traditional document search?',
+    'What is the difference between a source-cited AI knowledge base and a RAG chatbot?',
+    'How should B2B teams compare citations, permissions, and knowledge-graph capabilities?',
+    'What are the trade-offs between an enterprise AI knowledge base and a general note-taking tool?',
+    'How can teams compare explainability and evidence trails across AI knowledge bases?',
+    'How does a knowledge-graph knowledge base compare with FAQ software for multilingual help centers?',
+    'Which metrics matter when comparing traceability across AI knowledge base products?',
+    'How should teams compare private knowledge bases with public-search AI tools?',
+    'How do version-management capabilities differ across auditable AI knowledge platforms?',
+  ],
+  alternative: [
+    'What are alternatives to Notion AI for source-cited enterprise knowledge bases?',
+    'Which alternatives offer knowledge-graph context for B2B knowledge teams?',
+    'What can replace a general document collaboration tool for governed AI answers?',
+    'Which traceable AI knowledge bases can replace a manual FAQ system?',
+    'What alternatives suit teams that need enterprise permissions and answer citations?',
+    'Which AI knowledge base options work for product and support teams together?',
+    'What can replace manually maintained documentation hubs with AI-assisted retrieval?',
+    'Which enterprise knowledge bases support both Chinese and English Q&A?',
+    'What AI help-center platforms are worth evaluating for a cross-border SaaS company?',
+    'Which tools let teams verify the source behind an AI-generated answer?',
+  ],
+  'brand-discovery': [
+    'What type of AI knowledge base is CoreNote?',
+    'Does CoreNote support knowledge-graph context?',
+    'Can CoreNote link AI answers to source material?',
+    'Which B2B teams might evaluate CoreNote?',
+    'Can CoreNote help with fragmented enterprise knowledge and answer traceability?',
+    'How does CoreNote relate to an enterprise help center?',
+    'Is CoreNote suitable for managing Chinese and English knowledge content?',
+    'Does CoreNote provide verifiable source references for AI answers?',
+    'Could CoreNote fit an AI product team knowledge workspace?',
+    'Why might an enterprise evaluate CoreNote as an AI knowledge-base candidate?',
+  ],
+}
+
+const meta = {
+  'category-discovery': { userRole: 'knowledge-lead', businessStage: 'discover' },
+  scenario: { userRole: 'ai-product-lead', businessStage: 'evaluate' },
+  comparison: { userRole: 'saaS-evaluation-lead', businessStage: 'compare' },
+  alternative: { userRole: 'knowledge-lead', businessStage: 'evaluate' },
+  'brand-discovery': { userRole: 'knowledge-lead', businessStage: 'validate' },
+}
+
+const toQueries = (questions, market, locale, language, targetProduct) => Object.entries(questions).flatMap(([intent, texts]) => texts.map((text, index) => ({
+  text, market, locale, language, intent, priority: 'P0', targetProduct,
+  userRole: meta[intent].userRole, businessStage: meta[intent].businessStage,
+  expectedFacts: intent === 'brand-discovery' ? ['Evidence-backed product facts only'] : ['Knowledge-graph context', 'Source-cited answers'],
+  riskMetadata: { factualRisk: 'high', reviewRequired: true, sequence: index + 1 },
+})))
+
+export function buildCoreNotePilotQueryCorpus({ targetProduct = 'CoreNote' } = {}) {
+  return [
+    ...toQueries(cn, 'CN', 'zh-CN', 'zh', targetProduct),
+    ...toQueries(en, 'GLOBAL', 'en-US', 'en', targetProduct),
+  ]
+}
+
+export const coreNotePilotQueryReviewChecklist = Object.freeze({
+  version: 'query-review-v1',
+  reference: 'docs/workflows/query-design-rules.md#dataset-approval-checklist',
+  requiredChecks: ['intentMapped', 'localeAndLanguage', 'roleAndStage', 'claimsSafe', 'noOutcomeGuarantees'],
+})

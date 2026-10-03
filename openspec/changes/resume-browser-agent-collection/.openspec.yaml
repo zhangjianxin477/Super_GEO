@@ -1,0 +1,4 @@
+schema: spec-driven
+created: 2026-10-01
+goal: Support enterprise-grade platform-scoped checkpoint resume for Browser
+  Agent collection.
