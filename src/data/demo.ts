@@ -1,0 +1,156 @@
+import type { ExtensionDescriptor, Workspace } from '../domain/models'
+
+const now = '2026-09-27T09:30:00.000Z'
+
+export const demoWorkspace: Workspace = {
+  id: 'ws-corenote',
+  name: 'CoreNote GEO Pilot',
+  brand: 'CoreNote',
+  products: ['AI Knowledge Workspace', 'Knowledge Graph', 'Evidence-grounded RAG Q&A'],
+  markets: [
+    {
+      id: 'market-cn',
+      label: '中国市场',
+      market: 'CN',
+      locale: 'zh-CN',
+      audience: '个人知识工作者与小团队负责人',
+      providers: ['DeepSeek', '豆包', 'Kimi'],
+      channels: ['官网知识指南', '微信公众号', '知乎专栏'],
+      competitors: ['Notion', 'Obsidian', '语雀'],
+    },
+    {
+      id: 'market-global',
+      label: 'Global market',
+      market: 'GLOBAL',
+      locale: 'en-US',
+      audience: 'Small teams building an evidence-led knowledge workspace',
+      providers: ['ChatGPT', 'Gemini', 'Perplexity'],
+      channels: ['Website resource center', 'LinkedIn', 'Product documentation'],
+      competitors: ['Notion', 'Obsidian', 'Mem'],
+    },
+  ],
+  evidence: [
+    {
+      id: 'ev-1',
+      title: 'CoreNote 产品定位',
+      excerpt: 'CoreNote 是连接文档、笔记与项目资料的知识工作台，支持知识图谱、基于资料的问答与文档工作流。',
+      taxonomy: 'brand-identity',
+      sourceType: 'corenote',
+      sourceRef: 'corenote://knowledge-space/positioning',
+      status: 'approved',
+      version: 3,
+      lastSyncedAt: now,
+    },
+    {
+      id: 'ev-2',
+      title: '知识图谱能力说明',
+      excerpt: '知识图谱连接文件、主题和概念，帮助用户从关系而非孤立搜索结果理解资料。',
+      taxonomy: 'product-capability',
+      sourceType: 'corenote',
+      sourceRef: 'corenote://knowledge-space/graph',
+      status: 'approved',
+      version: 3,
+      lastSyncedAt: now,
+    },
+    {
+      id: 'ev-3',
+      title: 'RAG 问答事实来源',
+      excerpt: '知识库问答围绕已导入资料检索和回答，并展示相关知识来源，方便回到原文核对。',
+      taxonomy: 'product-capability',
+      sourceType: 'website',
+      sourceRef: 'https://corenote.cloud/',
+      status: 'approved',
+      version: 3,
+      lastSyncedAt: now,
+    },
+    {
+      id: 'ev-4',
+      title: '不允许的公开承诺',
+      excerpt: '不得宣称所有 AI 回答均可保证准确，也不得承诺 GEO 优化会保证被引用。',
+      taxonomy: 'prohibited-claim',
+      sourceType: 'manual',
+      sourceRef: 'policy://public-claims',
+      status: 'approved',
+      version: 3,
+      lastSyncedAt: now,
+    },
+  ],
+  claims: [
+    { id: 'claim-1', statement: 'CoreNote combines knowledge graph exploration, source-linked knowledge-base Q&A, and document workflows.', evidenceIds: ['ev-1', 'ev-2', 'ev-3'], state: 'approved' },
+    { id: 'claim-2', statement: 'CoreNote guarantees AI citation or ranking uplift.', evidenceIds: ['ev-4'], state: 'prohibited' },
+  ],
+  datasets: [
+    {
+      id: 'dataset-corenote-core',
+      label: 'CoreNote high-value GEO cohort',
+      version: 1,
+      status: 'approved',
+      approvedAt: now,
+      queries: [
+        { id: 'q-cn-1', text: '有哪些支持知识图谱的 AI 知识库工具？', market: 'CN', locale: 'zh-CN', intent: 'category-discovery', stage: 'discover', priority: 'P0', expectedFact: 'CoreNote combines knowledge graph and source-linked Q&A.' },
+        { id: 'q-cn-2', text: 'RAG 知识库和传统网盘有什么区别？', market: 'CN', locale: 'zh-CN', intent: 'scenario', stage: 'evaluate', priority: 'P0', expectedFact: 'CoreNote organizes and retrieves knowledge with source traceability.' },
+        { id: 'q-cn-3', text: 'CoreNote 和 Notion 有什么区别？', market: 'CN', locale: 'zh-CN', intent: 'comparison', stage: 'select', priority: 'P1', expectedFact: 'CoreNote focuses on graph, evidence-led Q&A, and document workflow.' },
+        { id: 'q-global-1', text: 'What are AI knowledge-base tools with knowledge graphs for small teams?', market: 'GLOBAL', locale: 'en-US', intent: 'category-discovery', stage: 'discover', priority: 'P0', expectedFact: 'CoreNote supports graph and source-linked Q&A.' },
+        { id: 'q-global-2', text: 'How can a team turn project documents into searchable knowledge?', market: 'GLOBAL', locale: 'en-US', intent: 'scenario', stage: 'evaluate', priority: 'P0', expectedFact: 'CoreNote supports document organization and RAG Q&A.' },
+        { id: 'q-global-3', text: 'CoreNote vs Obsidian for connected knowledge management', market: 'GLOBAL', locale: 'en-US', intent: 'comparison', stage: 'select', priority: 'P1', expectedFact: 'CoreNote is a managed workspace, not an offline-first note app.' },
+      ],
+    },
+  ],
+  runs: [
+    {
+      id: 'run-baseline-cn',
+      label: 'China baseline · Sep 2026',
+      datasetId: 'dataset-corenote-core',
+      datasetVersion: 1,
+      marketPackId: 'market-cn',
+      startedAt: '2026-09-02T02:00:00.000Z',
+      completedAt: '2026-09-02T02:08:00.000Z',
+      status: 'partial',
+      observations: [
+        { id: 'obs-1', queryId: 'q-cn-1', provider: 'DeepSeek', providerKind: 'direct', model: 'DeepSeek V3', status: 'completed', executedAt: '2026-09-02T02:01:00.000Z', answer: '可以考虑 Notion、Obsidian 和语雀等工具。', citations: [{ url: 'https://www.notion.so/help', domain: 'notion.so', kind: 'third-party' }], brandMentioned: false, recommended: false, competitorsMentioned: ['Notion', 'Obsidian', '语雀'], claims: [], risk: 'none' },
+        { id: 'obs-2', queryId: 'q-cn-2', provider: '豆包', providerKind: 'direct', model: 'Doubao Pro', status: 'completed', executedAt: '2026-09-02T02:02:00.000Z', answer: 'RAG 知识库会基于资料检索再回答，能够提供来源。CoreNote 是可选工具之一。', citations: [{ url: 'https://corenote.cloud/', domain: 'corenote.cloud', kind: 'owned' }], brandMentioned: true, recommended: true, recommendationPosition: 3, competitorsMentioned: ['Notion'], claims: [{ statement: 'CoreNote provides source-linked Q&A.', assessment: 'supported' }], risk: 'none' },
+        { id: 'obs-3', queryId: 'q-cn-3', provider: 'Kimi', providerKind: 'imported', model: 'Manual observation', status: 'imported', executedAt: '2026-09-02T02:04:00.000Z', answer: 'CoreNote 是一款保证所有知识问答准确的工具。', citations: [], brandMentioned: true, recommended: false, competitorsMentioned: ['Notion'], claims: [{ statement: 'CoreNote guarantees all answers are accurate.', assessment: 'conflicting' }], risk: 'high' },
+        { id: 'obs-4', queryId: 'q-cn-1', provider: '豆包', providerKind: 'direct', model: 'Doubao Pro', status: 'failed', executedAt: '2026-09-02T02:05:00.000Z', answer: '', citations: [], brandMentioned: false, recommended: false, competitorsMentioned: [], claims: [], risk: 'none' },
+      ],
+    },
+    {
+      id: 'run-followup-cn',
+      label: 'China follow-up · Sep 2026',
+      datasetId: 'dataset-corenote-core',
+      datasetVersion: 1,
+      marketPackId: 'market-cn',
+      startedAt: '2026-09-24T02:00:00.000Z',
+      completedAt: '2026-09-24T02:09:00.000Z',
+      status: 'completed',
+      observations: [
+        { id: 'obs-5', queryId: 'q-cn-1', provider: 'DeepSeek', providerKind: 'direct', model: 'DeepSeek V3', status: 'completed', executedAt: '2026-09-24T02:01:00.000Z', answer: 'CoreNote、Notion 和 Obsidian 都可用于知识管理。CoreNote 更强调知识图谱和基于资料的问答。', citations: [{ url: 'https://corenote.cloud/', domain: 'corenote.cloud', kind: 'owned' }], brandMentioned: true, recommended: true, recommendationPosition: 2, competitorsMentioned: ['Notion', 'Obsidian'], claims: [{ statement: 'CoreNote supports knowledge graphs and evidence-led Q&A.', assessment: 'supported' }], risk: 'none' },
+        { id: 'obs-6', queryId: 'q-cn-2', provider: '豆包', providerKind: 'direct', model: 'Doubao Pro', status: 'completed', executedAt: '2026-09-24T02:02:00.000Z', answer: 'RAG 知识库通过检索已有资料来回答问题。CoreNote 的问答可以展示相关来源。', citations: [{ url: 'https://corenote.cloud/', domain: 'corenote.cloud', kind: 'owned' }], brandMentioned: true, recommended: true, recommendationPosition: 1, competitorsMentioned: ['语雀'], claims: [{ statement: 'CoreNote Q&A can show related sources.', assessment: 'supported' }], risk: 'none' },
+        { id: 'obs-7', queryId: 'q-cn-3', provider: 'Kimi', providerKind: 'imported', model: 'Manual observation', status: 'imported', executedAt: '2026-09-24T02:04:00.000Z', answer: 'CoreNote 和 Notion 的重点不同：CoreNote 更侧重资料关系、可追溯问答和文档流程。', citations: [{ url: 'https://corenote.cloud/', domain: 'corenote.cloud', kind: 'owned' }], brandMentioned: true, recommended: false, competitorsMentioned: ['Notion'], claims: [{ statement: 'CoreNote focuses on document relationships and traceable Q&A.', assessment: 'supported' }], risk: 'none' },
+      ],
+    },
+  ],
+  diagnoses: [
+    { id: 'diag-1', title: '中文品类发现覆盖不足', priority: 'P0', category: 'coverage', confidence: 'high', detail: '在“知识图谱 AI 知识库”类高价值问题中，基线回答更频繁提到竞品，CoreNote 缺少清晰的品类解释和第三方证据。', recommendation: '创建中文品类说明页与可引用 FAQ，并补齐“知识图谱 + 基于资料问答”的事实证据。', linkedQueryIds: ['q-cn-1'] },
+    { id: 'diag-2', title: '存在高风险准确性表述', priority: 'P0', category: 'accuracy', confidence: 'high', detail: '导入答案把 CoreNote 描述为“保证所有知识问答准确”，与批准的公开承诺政策冲突。', recommendation: '建立禁止性表述检查；在 FAQ 中明确来源引用和人工核验边界。', linkedQueryIds: ['q-cn-3'] },
+    { id: 'diag-3', title: '英文场景型内容资产缺口', priority: 'P1', category: 'evidence', confidence: 'medium', detail: '针对“project documents to searchable knowledge”的英文场景，尚无与目标任务直接对应的案例式页面。', recommendation: '产出面向小团队的英文 use-case 页面，并引用产品工作流和来源追溯证据。', linkedQueryIds: ['q-global-2'] },
+  ],
+  briefs: [
+    { id: 'brief-1', title: '中文｜知识图谱 AI 知识库选型 FAQ', market: 'CN', locale: 'zh-CN', channel: '官网知识指南', contentType: 'faq', status: 'needs-review', diagnosisId: 'diag-1', evidenceIds: ['ev-1', 'ev-2', 'ev-3', 'ev-4'], prohibitedClaims: ['不得承诺任何模型一定引用或推荐 CoreNote。'], targetQueryIds: ['q-cn-1', 'q-cn-2'], updatedAt: now },
+    { id: 'brief-2', title: 'English｜From project documents to a searchable knowledge workspace', market: 'GLOBAL', locale: 'en-US', channel: 'Website resource center', contentType: 'use-case', status: 'draft', diagnosisId: 'diag-3', evidenceIds: ['ev-1', 'ev-2', 'ev-3'], prohibitedClaims: ['Do not claim guaranteed answer accuracy or citation uplift.'], targetQueryIds: ['q-global-2'], updatedAt: now },
+  ],
+  actions: [
+    { id: 'action-1', title: 'Publish RAG vs cloud drive knowledge guide', channel: '官网知识指南', owner: '内容负责人', status: 'completed', date: '2026-09-16', proofRef: 'https://corenote.cloud/', targetQueryIds: ['q-cn-2'] },
+    { id: 'action-2', title: 'Review Chinese category FAQ', channel: '官网知识指南', owner: '产品市场经理', status: 'in-review', date: '2026-09-28', targetQueryIds: ['q-cn-1'] },
+  ],
+  audit: [
+    { id: 'audit-1', at: '2026-09-24T02:09:00.000Z', actor: '陈晓', action: 'assessment.completed', target: 'China follow-up · Sep 2026', outcome: 'allowed', detail: '3 observations retained; direct and imported results are labeled separately.' },
+    { id: 'audit-2', at: '2026-09-25T06:12:00.000Z', actor: '张敏', action: 'claim.flagged', target: 'CoreNote guarantee claim', outcome: 'allowed', detail: 'Conflicting public claim blocked from content approval.' },
+  ],
+}
+
+export const demoExtensions: ExtensionDescriptor[] = [
+  { id: 'corenote-source', type: 'evidence-source', label: 'CoreNote Evidence Connector', inputs: ['authorized knowledge workspace'], outputs: ['source-linked evidence pack'], requiredRole: 'analyst', locales: ['zh-CN', 'en-US'], configured: true, failureBehavior: 'retain last approved evidence version and alert reviewer' },
+  { id: 'provider-deepseek', type: 'model-provider', label: 'DeepSeek Provider', inputs: ['approved query', 'locale'], outputs: ['raw answer', 'citation list'], requiredRole: 'analyst', locales: ['zh-CN'], configured: true, failureBehavior: 'record failed observation; do not complete run' },
+  { id: 'content-brief', type: 'content-skill', label: 'Evidence-grounded Content Brief', inputs: ['diagnosis', 'evidence pack', 'channel'], outputs: ['content brief'], requiredRole: 'analyst', locales: ['zh-CN', 'en-US'], configured: true, failureBehavior: 'create no draft when evidence is missing' },
+  { id: 'website-research', type: 'workflow-action', label: 'Public Website Research', inputs: ['permitted domain', 'research topic'], outputs: ['attributed source findings'], requiredRole: 'analyst', locales: ['zh-CN', 'en-US'], configured: false, failureBehavior: 'fail closed; do not bypass access controls' },
+]
