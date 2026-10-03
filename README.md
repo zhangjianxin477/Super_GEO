@@ -283,6 +283,37 @@ npm run verify
 
 当前已验证：前端构建通过，前端测试 **117 项通过**。建议使用 Node.js 24.x 运行完整验证，避免使用旧 Node 版本带来的 Vite / `node:sqlite` 环境差异。
 
+## GitHub Pages 静态演示
+
+仓库已配置 GitHub Actions：每次推送到 `main` 分支后，工作流会自动使用 Node.js 24 构建 `dist/`，并发布到 GitHub Pages。
+
+仓库地址：`https://github.com/zhangjianxin477/GEO-`
+
+首次启用时，在 GitHub 仓库中打开：
+
+```text
+Settings → Pages → Build and deployment → Source: GitHub Actions
+```
+
+随后等待 `Deploy frontend to GitHub Pages` 工作流完成，访问地址通常为：
+
+```text
+https://zhangjianxin477.github.io/GEO-/
+```
+
+也可以在仓库的 `Settings → Pages` 页面直接复制 GitHub 显示的最终地址。Vite 已针对仓库子路径配置 `base: /GEO-/`，导航使用 hash 路由，因此刷新 `#reports`、`#monitoring` 等页面不会因为 GitHub Pages 没有后端路由而 404。
+
+### GitHub Pages 的能力边界
+
+GitHub Pages 只托管静态前端，不运行 Node.js API、SQLite 数据库或 Browser Agent。因此在线页面适合用于：
+
+- 面试作品集和产品原型展示；
+- 查看首页、工作流结构、交互和响应式 UI；
+- 展示不依赖后端的前端页面状态。
+
+完整业务闭环仍需要本地 API：项目数据、模型连接、真实平台测试、回答与引用导入、竞品分析、内容保存和报告数据都依赖 `server/index.mjs`。在 GitHub Pages 中点击需要 API 的工作台入口时，页面可能提示无法连接本地 API，这是静态部署的预期限制，并不代表本地版本不可用。
+
+如果需要让在线地址也具备完整后端能力，需要另行部署 Node.js API 和持久化数据库，并通过 `VITE_API_BASE_URL` 指向 API；这与 GitHub Pages 静态托管是两套部署单元。
 ## 演示路径
 
 推荐按下面的顺序展示：
@@ -352,9 +383,10 @@ npm run verify
 2. 完善 Browser Agent 的跨平台执行队列、幂等、限流和任务恢复；
 3. 增加生产级认证、权限、密钥管理和多租户部署；
 4. 增加真实报告导出（PDF / CSV）与审计下载记录；
-5. 补充部署脚本、CI、生产日志和可观测性；
+5. 将完整 Node.js API、SQLite 持久化、生产日志和可观测性部署到独立后端；
 6. 对竞品结构分析、引用归因和内容建议增加可评估的离线数据集。
 
 ## License
 
 当前为个人作品 / 面试展示项目。正式开源前请补充许可证、第三方依赖声明和部署安全说明。
+
